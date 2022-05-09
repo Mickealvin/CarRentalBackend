@@ -7,8 +7,8 @@ namespace CarRental.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VehicleTypeController : BaseController<VehicleType>
+    public class ClientController : BaseController<Client>
     {
-        public VehicleTypeController(IUnitOfWork unitOfWork): base(unitOfWork) { }
+        public ClientController(IUnitOfWork unitOfWork): base(unitOfWork) { }
     }
 }

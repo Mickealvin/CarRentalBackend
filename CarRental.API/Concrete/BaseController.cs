@@ -20,13 +20,15 @@ namespace CarRental.API.Concrete
             _repository = (IRepository<T>)unitOfWork.GetType().GetProperty(name).GetValue(unitOfWork, null);
         }
 
-        public async Task<IActionResult> Create(T _object)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] T _object)
         {
             await _repository.Insert(_object);
             await _unitOfWork.SaveChangesAsync();
             return Ok(new ResponseDto<bool>(true));
         }
 
+        [HttpDelete]
         public async Task<IActionResult> Delete(int Id)
         {
             await _repository.Delete(Id);
@@ -34,6 +36,7 @@ namespace CarRental.API.Concrete
             return Ok(new ResponseDto<bool>(true));
         }
 
+        [HttpGet("{Id}")]
         public async Task<IActionResult> GetById(int Id)
         {
             var data = await _repository.GetById(Id);
@@ -57,7 +60,7 @@ namespace CarRental.API.Concrete
             return Ok(new ResponseDto<IEnumerable<T>>(data));
         }
 
-        public async Task<IActionResult> Update(T _object)
+        public async Task<IActionResult> Update([FromBody] T _object)
         {
             _repository.Update(_object);
             await _unitOfWork.SaveChangesAsync();
