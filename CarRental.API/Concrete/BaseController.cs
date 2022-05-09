@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.API.Concrete
 {
+    [Produces("application/json")]
     [ApiController]
     public abstract class BaseController<T> : ControllerBase, IBaseController<T> where T: BaseEntity
     {
@@ -59,7 +60,7 @@ namespace CarRental.API.Concrete
             await _unitOfWork.SaveChangesAsync();
             return Ok(new ResponseDto<IEnumerable<T>>(data));
         }
-
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] T _object)
         {
             _repository.Update(_object);
