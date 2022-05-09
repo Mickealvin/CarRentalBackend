@@ -42,6 +42,13 @@ namespace CarRental.Infrastructure.Data
                 entity.Property(x => x.WorkShit)
                        .HasConversion<string>();
             });
+
+            modelBuilder.Entity<Vehicle>(entity =>
+            {
+                entity.HasOne(x => x.Model)
+                       .WithMany()
+                       .OnDelete(DeleteBehavior.NoAction);
+            });
         }
     }
 }
