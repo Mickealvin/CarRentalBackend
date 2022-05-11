@@ -42,7 +42,7 @@ namespace CarRental.Infrastructure.Data
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.Property(x => x.WorkShit)
+                entity.Property(x => x.WorkShift)
                        .HasConversion<string>();
             });
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CarRental.Domain.Enums
 {
-    public enum WorkShit
+    public enum WorkShift
     {
         DAY,
         AFTERNOON,
