@@ -26,8 +26,11 @@ namespace CarRental.Infrastructure.Data
         public DbSet<Rent> Rents { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
         {
-            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("CarRentalDB"));
+            optionsBuilder
+                .UseSqlServer(Configuration.GetConnectionString("CarRentalDB"))
+                .UseLazyLoadingProxies(); // ACTIVATE LAZY LOADING ALWAYS
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

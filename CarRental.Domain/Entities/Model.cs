@@ -8,6 +8,6 @@ namespace CarRental.Domain.Entities
     {
         public string Description { get; set; }
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
     }
 }

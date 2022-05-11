@@ -11,12 +11,12 @@ namespace CarRental.Domain.Entities
         public int EngineNumber { get; set; }
         public int PlateNumber { get; set; }
         public int VehicleTypeId { get; set; }
-        public VehicleType VehicleType { get; set; }
+        public virtual VehicleType VehicleType { get; set; }
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
         public int ModelId { get; set; }
-        public Model Model { get; set; }
+        public virtual Model Model { get; set; }
         public int FuelTypeId { get; set; }
-        public FuelType FuelType { get; set; }
+        public virtual FuelType FuelType { get; set; }
     }
 }

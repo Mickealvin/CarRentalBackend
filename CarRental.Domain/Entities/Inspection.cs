@@ -8,9 +8,9 @@ namespace CarRental.Domain.Entities
     public class Inspection: BaseEntity
     {
         public int VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
         public int ClientId { get; set; }
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
         public bool HasScratches { get; set; }
         public FuelQuantity FuelQuantity { get; set; }
         public bool HasSpareTire { get; set; }
@@ -19,6 +19,6 @@ namespace CarRental.Domain.Entities
         public bool TireCondition { get; set; }
         public DateTime InspectionDate { get; set; }
         public int EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }
