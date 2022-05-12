@@ -14,8 +14,11 @@ namespace CarRental.Domain.Entities
         public virtual Client Client { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime ReturnDate { get; set; }
+        public bool Returned { get; set; }
         public decimal RatePerDay { get; set; }
         public int DaysQuantity { get; set; }
         public string Comment { get; set; }
+
+        //public ICollection<Inspection> Inspections { get; set; }
     }
 }

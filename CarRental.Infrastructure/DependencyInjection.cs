@@ -12,6 +12,8 @@ namespace CarRental.Infrastructure
         {
             services.AddDbContext<CarRentalContext>();
 
+            services.AddScoped<IInspectionRepository, InspectionRepository>();
+
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

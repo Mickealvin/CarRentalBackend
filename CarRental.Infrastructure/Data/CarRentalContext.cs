@@ -46,12 +46,26 @@ namespace CarRental.Infrastructure.Data
                        .HasConversion<string>();
             });
 
+            modelBuilder.Entity<Inspection>(entity =>
+            {
+                entity.Property(x => x.InspectionType)
+                       .HasConversion<string>();
+            });
+
             modelBuilder.Entity<Vehicle>(entity =>
             {
                 entity.HasOne(x => x.Model)
                        .WithMany()
                        .OnDelete(DeleteBehavior.NoAction);
             });
+            /*
+            modelBuilder.Entity<Rent>(entity =>
+            {
+                entity.HasMany(x => x.Inspections)
+                       .WithOne()
+                       .OnDelete(DeleteBehavior.NoAction);
+            });
+            */
         }
     }
 }
