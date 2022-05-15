@@ -1,5 +1,6 @@
 ﻿using CarRental.API.Concrete;
 using CarRental.API.DTOs;
+using CarRental.Domain.DTOs;
 using CarRental.Domain.Entities;
 using CarRental.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace CarRental.API.Controllers
         [HttpGet("available")]
         public async Task<IActionResult> CheckVehicleAvaiability([FromQuery] CheckVehicleAvaiabilityDto data)
         {
-            var response = await _unitOfWork.InspectionRepository.CheckVehicleAvailability(data.idVehicle, data.idClient, data.inspectionDate, data.type);
+            var response = await _unitOfWork.InspectionRepository.CheckVehicleAvailability(data.vehicleId, data.vehicleId, data.inspectionDate, data.type);
             return Ok(new ResponseDto<bool>(response));
         }
     }

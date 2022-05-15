@@ -22,9 +22,8 @@ namespace CarRental.Infrastructure.Repositories
         {
 
             var exists = await _dbContext.Inspections
-                            .FirstOrDefaultAsync(x => x.VehicleId == idVehicle && x.ClientId == idVehicle 
-                                            && x.InspectionDate.Date == inspectionDate.Date 
-                                            && x.InspectionType == type);
+                            .FirstOrDefaultAsync(x => x.VehicleId == idVehicle && x.ClientId == idClient 
+                                            && x.InspectionDate.Date == inspectionDate.Date);
             return exists == null;
         }
     }
