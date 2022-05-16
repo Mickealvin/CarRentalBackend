@@ -18,6 +18,6 @@ namespace CarRental.Domain.Interfaces
         IInspectionRepository InspectionRepository { get; }
         IRentRepository RentRepository { get; }
         void SaveChanges();
-        Task SaveChangesAsync();
+        Task<int> SaveChangesAsync();
     }
 }

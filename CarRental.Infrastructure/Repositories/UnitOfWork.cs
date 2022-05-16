@@ -57,9 +57,9 @@ namespace CarRental.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        public async Task SaveChangesAsync()
+        public Task<int> SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();
+            return  _context.SaveChangesAsync();
         }
     }
 }
