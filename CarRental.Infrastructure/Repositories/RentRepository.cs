@@ -20,7 +20,9 @@ namespace CarRental.Infrastructure.Repositories
         {
             // verificar si no hay rentas para ese vehiculo, en ese rango de fechas
             var query = await _dbContext.Rents
-                                        .Where(x => x.VehicleId == vehicleId && x.Returned == false && x.RentDate.Date >= rentDate && x.ReturnDate.Date <= returnDate)
+                                        .Where(x => x.VehicleId == vehicleId && x.Returned == false 
+                                                && (rentDate >= x.RentDate.Date  && rentDate <= x.ReturnDate
+                                                || returnDate >= x.RentDate && returnDate <= x.ReturnDate))
                                         .CountAsync();
             return query == 0;
         }

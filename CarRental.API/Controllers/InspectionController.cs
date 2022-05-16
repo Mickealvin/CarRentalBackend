@@ -15,10 +15,10 @@ namespace CarRental.API.Controllers
         private readonly IUnitOfWork _unitOfWork;
         public InspectionController(IUnitOfWork unitOfWork) : base(unitOfWork) => _unitOfWork = unitOfWork;
 
-        [HttpGet("available")]
-        public async Task<IActionResult> CheckVehicleAvaiability([FromQuery] CheckVehicleAvaiabilityDto data)
+        [HttpGet("inspected")]
+        public async Task<IActionResult> CheckVehicleIsInspected([FromQuery] CheckVehicleAvaiabilityDto data)
         {
-            var response = await _unitOfWork.InspectionRepository.CheckVehicleAvailability(data.vehicleId, data.vehicleId, data.inspectionDate, data.type);
+            var response = await _unitOfWork.InspectionRepository.VehicleIsInspected(data.vehicleId, data.vehicleId, data.inspectionDate, data.type);
             return Ok(new ResponseDto<bool>(response));
         }
     }
