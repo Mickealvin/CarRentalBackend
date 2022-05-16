@@ -19,7 +19,7 @@ namespace CarRental.Infrastructure.Repositories
         public IRepository<Client> ClientRepository { get; }
         public IRepository<Employee> EmployeeRepository { get; }
         public IInspectionRepository InspectionRepository { get; }
-        public IRepository<Rent> RentRepository { get; }
+        public IRentRepository RentRepository { get; }
         public UnitOfWork(
             CarRentalContext context,
             IRepository<VehicleType> vehicleTypeRepository,
@@ -30,7 +30,7 @@ namespace CarRental.Infrastructure.Repositories
             IRepository<Client> clientRepository,
             IRepository<Employee> employeeRepository,
             IInspectionRepository inspectionRepository,
-            IRepository<Rent> rentRepository
+            IRentRepository rentRepository
             )
         {
             _context = context;
