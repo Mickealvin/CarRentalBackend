@@ -1,8 +1,10 @@
 ﻿using CarRental.Domain.Entities;
 using CarRental.Domain.Interfaces;
 using CarRental.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +16,10 @@ namespace CarRental.Infrastructure.Repositories
         {
         }
 
-        public Task<User> Login(string userName, string password)
+        public async Task<User> Login(string userName, string password)
         {
-            throw new NotImplementedException();
+            var query = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserName == userName && x.Password == password);
+            return query;
         }
     }
 }
