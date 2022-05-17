@@ -24,6 +24,7 @@ namespace CarRental.Infrastructure.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Inspection> Inspections { get; set; }
         public DbSet<Rent> Rents { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 

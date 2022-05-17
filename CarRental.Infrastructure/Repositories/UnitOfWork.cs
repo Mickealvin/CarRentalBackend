@@ -20,6 +20,7 @@ namespace CarRental.Infrastructure.Repositories
         public IRepository<Employee> EmployeeRepository { get; }
         public IInspectionRepository InspectionRepository { get; }
         public IRentRepository RentRepository { get; }
+        public IAuthRepository AuthRepository { get; }
         public UnitOfWork(
             CarRentalContext context,
             IRepository<VehicleType> vehicleTypeRepository,
@@ -30,7 +31,8 @@ namespace CarRental.Infrastructure.Repositories
             IRepository<Client> clientRepository,
             IRepository<Employee> employeeRepository,
             IInspectionRepository inspectionRepository,
-            IRentRepository rentRepository
+            IRentRepository rentRepository,
+            IAuthRepository authRepository
             )
         {
             _context = context;
@@ -43,6 +45,7 @@ namespace CarRental.Infrastructure.Repositories
             EmployeeRepository = employeeRepository;
             InspectionRepository = inspectionRepository;
             RentRepository = rentRepository;
+            AuthRepository = authRepository;
         }
         public void Dispose()
         {

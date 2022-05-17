@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CustomEntities\" />
-    <Folder Include="Services\" />
+    <Compile Remove="CustomEntities\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="CustomEntities\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="CustomEntities\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
 </Project>
