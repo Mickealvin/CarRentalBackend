@@ -17,6 +17,7 @@ namespace CarRental.Domain.Interfaces
         IRepository<Employee> EmployeeRepository { get; }
         IInspectionRepository InspectionRepository { get; }
         IRentRepository RentRepository { get; }
+        IAuthRepository AuthRepository { get; }
         void SaveChanges();
         Task<int> SaveChangesAsync();
     }

@@ -15,6 +15,7 @@ namespace CarRental.Infrastructure
             // non-generic
             services.AddScoped<IInspectionRepository, InspectionRepository>();
             services.AddScoped<IRentRepository, RentRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
 
             // generic
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
