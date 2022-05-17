@@ -18,13 +18,13 @@ namespace CarRental.Infrastructure.Repositories
 
         }
 
-        public async Task<bool> CheckVehicleAvailability(int idVehicle, int idClient, DateTime inspectionDate, InspectionType type)
+        public async Task<bool> VehicleIsInspected(int idVehicle, int idClient, DateTime inspectionDate, InspectionType type)
         {
 
             var exists = await _dbContext.Inspections
                             .FirstOrDefaultAsync(x => x.VehicleId == idVehicle && x.ClientId == idClient 
                                             && x.InspectionDate.Date == inspectionDate.Date);
-            return exists == null;
+            return exists != null;
         }
     }
 }

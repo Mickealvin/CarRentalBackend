@@ -25,16 +25,18 @@ namespace CarRental.API.Concrete
         public async Task<IActionResult> Create([FromBody] T _object)
         {
             await _repository.Insert(_object);
-            await _unitOfWork.SaveChangesAsync();
-            return Ok(new ResponseDto<bool>(true));
+            var result = await _unitOfWork.SaveChangesAsync() > 0;
+            var response = new ResponseDto<bool>(result, result);
+            return Ok(response);
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int Id)
         {
             await _repository.Delete(Id);
-            await _unitOfWork.SaveChangesAsync();
-            return Ok(new ResponseDto<bool>(true));
+            var result = await _unitOfWork.SaveChangesAsync() > 0;
+            var response = new ResponseDto<bool>(result, result);
+            return Ok(response);
         }
 
         [HttpGet("{Id}")]
@@ -64,8 +66,9 @@ namespace CarRental.API.Concrete
         public async Task<IActionResult> Update([FromBody] T _object)
         {
             _repository.Update(_object);
-            await _unitOfWork.SaveChangesAsync();
-            return Ok(new ResponseDto<bool>(true));
+            var result = await _unitOfWork.SaveChangesAsync() > 0;
+            var response = new ResponseDto<bool>(result, result);
+            return Ok(response);
         }
     }
 }

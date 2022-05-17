@@ -12,8 +12,11 @@ namespace CarRental.Infrastructure
         {
             services.AddDbContext<CarRentalContext>();
 
+            // non-generic
             services.AddScoped<IInspectionRepository, InspectionRepository>();
+            services.AddScoped<IRentRepository, RentRepository>();
 
+            // generic
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

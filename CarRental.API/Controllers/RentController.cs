@@ -1,7 +1,10 @@
 ﻿using CarRental.API.Concrete;
+using CarRental.API.DTOs;
+using CarRental.Domain.DTOs;
 using CarRental.Domain.Entities;
 using CarRental.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CarRental.API.Controllers
 {
@@ -9,6 +12,14 @@ namespace CarRental.API.Controllers
     [ApiController]
     public class RentController : BaseController<Rent>
     {
-        public RentController(IUnitOfWork unitOfWork): base(unitOfWork) { }
+        private readonly IUnitOfWork _unitOfWork;
+        public RentController(IUnitOfWork unitOfWork) : base(unitOfWork) => _unitOfWork = unitOfWork;
+
+        [HttpGet("available")]
+        public async Task<IActionResult> IsAvailableForRent([FromQuery] IsAvailableForRentDto dto)
+        {
+            var result = await _unitOfWork.RentRepository.IsAvailableForRent(dto.VehicleId, dto.RentDate, dto.ReturnDate);
+            return Ok(new ResponseDto<bool>(result, true));
+        }
     }
 }

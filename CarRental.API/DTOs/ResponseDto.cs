@@ -7,9 +7,10 @@ namespace CarRental.API.DTOs
 {
     public class ResponseDto<T>
     {
-        public ResponseDto(T data)
+        public ResponseDto(T data, bool success = true)
         {
             Data = data;
+            Success = success;
         }
         public string ErrorMessage { get; set; }
         public bool Success { get; set; } = true;
