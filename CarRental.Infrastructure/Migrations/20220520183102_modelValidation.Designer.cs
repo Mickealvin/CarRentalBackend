@@ -4,14 +4,16 @@ using CarRental.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarRental.Infrastructure.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    partial class CarRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20220520183102_modelValidation")]
+    partial class modelValidation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -338,17 +340,12 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("ChassisNumber")
-                        .IsUnique();
-
                     b.HasIndex("FuelTypeId");
 
-                    b.HasIndex("ModelId");
-
-                    b.HasIndex("PlateNumber")
-                        .IsUnique();
-
                     b.HasIndex("VehicleTypeId");
+
+                    b.HasIndex("ModelId", "BrandId")
+                        .IsUnique();
 
                     b.ToTable("Vehicles");
                 });

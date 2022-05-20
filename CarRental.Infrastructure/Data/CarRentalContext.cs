@@ -37,14 +37,47 @@ namespace CarRental.Infrastructure.Data
         {
             modelBuilder.Entity<Client>(entity =>
             {
+                entity.HasIndex(x => x.IdentificationCard).IsUnique();
                 entity.Property(x => x.TaxPayerType)
                        .HasConversion<string>();
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
+                entity.HasIndex(x => x.IDCard).IsUnique();
                 entity.Property(x => x.WorkShift)
                        .HasConversion<string>();
+            });
+
+            modelBuilder.Entity<Brand>(entity =>
+            {
+                entity.HasIndex(x => x.Description).IsUnique();
+            });
+
+            modelBuilder.Entity<FuelType>(entity =>
+            {
+                entity.HasIndex(x => x.Description).IsUnique();
+            });
+
+            modelBuilder.Entity<Model>(entity =>
+            {
+                entity.HasIndex(x => x.Description).IsUnique();
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasIndex(x => x.UserName).IsUnique();
+            });
+
+            modelBuilder.Entity<Vehicle>(entity =>
+            {
+                entity.HasIndex(x => new { x.ChassisNumber }).IsUnique();
+                entity.HasIndex(x => new { x.PlateNumber }).IsUnique();
+            });
+
+            modelBuilder.Entity<VehicleType>(entity =>
+            {
+                entity.HasIndex(x => x.Description).IsUnique();
             });
 
             modelBuilder.Entity<Inspection>(entity =>
