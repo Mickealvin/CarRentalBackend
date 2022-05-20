@@ -1,3 +1,4 @@
+using CarRental.API.Filters;
 using CarRental.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,6 +46,14 @@ namespace CarRental.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 opts.IncludeXmlComments(xmlPath);
                 */
+            });
+
+            // Configurar middleware global
+            services.AddMvcCore(opts =>
+            {
+                // opts.Filters.Add(typeof(ValidationFilter));
+                opts.Filters.Add(typeof(GlobalExceptionFilter));
+
             });
         }
 
