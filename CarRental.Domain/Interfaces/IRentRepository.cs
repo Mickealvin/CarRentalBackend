@@ -9,5 +9,6 @@ namespace CarRental.Domain.Interfaces
     public interface IRentRepository: IRepository<Rent>
     {
         Task<bool> IsAvailableForRent(int vehicleId, DateTime rentDate, DateTime returnDate);
+        Task CompleteRent(int rentId);
     }
 }

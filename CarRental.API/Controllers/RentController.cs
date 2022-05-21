@@ -21,5 +21,13 @@ namespace CarRental.API.Controllers
             var result = await _unitOfWork.RentRepository.IsAvailableForRent(dto.VehicleId, dto.RentDate, dto.ReturnDate);
             return Ok(new ResponseDto<bool>(result, true));
         }
+
+        [HttpPut("{rentId}/complete")]
+        public async Task<IActionResult> CompleteRent([FromRoute] int rentId)
+        {
+            await _unitOfWork.RentRepository.CompleteRent(rentId);
+            await _unitOfWork.SaveChangesAsync();
+            return Ok(new ResponseDto<bool>(true));
+        }
     }
 }

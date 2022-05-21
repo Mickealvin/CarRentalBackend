@@ -31,7 +31,9 @@ namespace CarRental.API.Filters
                 context.Result = new BadRequestObjectResult(response);
             } else
             {
-                context.Result = new ConflictObjectResult(response);
+                var objectResult = new ObjectResult(response);
+                objectResult.StatusCode = (int)statusCode;
+                context.Result = objectResult;
             }
 
             context.HttpContext.Response.StatusCode = (int)statusCode;
