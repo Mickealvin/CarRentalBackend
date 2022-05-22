@@ -16,6 +16,14 @@ namespace CarRental.Infrastructure.Repositories
         {
         }
 
+        public async Task CompleteRent(int rentId)
+        {
+            var query = await _dbContext.Rents.FirstOrDefaultAsync(x => x.Id == rentId);
+            if (query == null) throw new Exception("Recurso no encontrado");
+
+            query.Returned = true;
+        }
+
         public async Task<bool> IsAvailableForRent(int vehicleId, DateTime rentDate, DateTime returnDate)
         {
             // verificar si no hay rentas para ese vehiculo, en ese rango de fechas
