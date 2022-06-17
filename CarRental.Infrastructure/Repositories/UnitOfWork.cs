@@ -70,9 +70,9 @@ namespace CarRental.Infrastructure.Repositories
 
         public IRepository<T> GetRepository<T>() where T : BaseEntity
         {
-            var repository = this.GetType().GetProperties().FirstOrDefault(x => x.PropertyType.GenericTypeArguments.FirstOrDefault() == typeof(T))?.GetValue(this);
-            if (repository == null) return new BaseRepository<T>(this._context);
-            return repository as IRepository<T>;
+            var repositoryProperty = this.GetType().GetProperties().FirstOrDefault(x => x.PropertyType.GenericTypeArguments.FirstOrDefault() == typeof(T));
+            if (repositoryProperty == null) return new BaseRepository<T>(this._context);
+            return repositoryProperty.GetValue(this) as IRepository<T>;
         }
     }
 }
