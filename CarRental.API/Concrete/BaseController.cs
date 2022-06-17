@@ -2,7 +2,9 @@
 using CarRental.API.DTOs;
 using CarRental.Domain.Entities;
 using CarRental.Domain.Interfaces;
+using CarRental.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,8 +19,7 @@ namespace CarRental.API.Concrete
         public BaseController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            string name = typeof(T).Name + "Repository";
-            _repository = (IRepository<T>)unitOfWork.GetType().GetProperty(name).GetValue(unitOfWork, null);
+            _repository = _unitOfWork.GetRepository<T>();
         }
 
         [HttpPost]
