@@ -3,6 +3,7 @@ using CarRental.Domain.Interfaces;
 using CarRental.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace CarRental.Infrastructure.Repositories
         public IInspectionRepository InspectionRepository { get; }
         public IRentRepository RentRepository { get; }
         public IAuthRepository AuthRepository { get; }
+
         public UnitOfWork(
             CarRentalContext context,
             IRepository<VehicleType> vehicleTypeRepository,
@@ -32,7 +34,8 @@ namespace CarRental.Infrastructure.Repositories
             IRepository<Employee> employeeRepository,
             IInspectionRepository inspectionRepository,
             IRentRepository rentRepository,
-            IAuthRepository authRepository
+            IAuthRepository authRepository,
+            IServiceProvider serviceProvider
             )
         {
             _context = context;
@@ -63,6 +66,13 @@ namespace CarRental.Infrastructure.Repositories
         public Task<int> SaveChangesAsync()
         {
             return  _context.SaveChangesAsync();
+        }
+
+        public IRepository<T> GetRepository<T>() where T : BaseEntity
+        {
+            var repositoryProperty = this.GetType().GetProperties().FirstOrDefault(x => x.PropertyType.GenericTypeArguments.FirstOrDefault() == typeof(T));
+            if (repositoryProperty == null) return new BaseRepository<T>(this._context);
+            return repositoryProperty.GetValue(this) as IRepository<T>;
         }
     }
 }
