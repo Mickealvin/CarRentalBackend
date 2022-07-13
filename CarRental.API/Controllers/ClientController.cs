@@ -9,6 +9,7 @@ namespace CarRental.API.Controllers
     [ApiController]
     public class ClientController : BaseController<Client>
     {
+        var hp;
         public ClientController(IUnitOfWork unitOfWork): base(unitOfWork) { }
     }
 }
